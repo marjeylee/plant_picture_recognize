@@ -70,7 +70,7 @@ class ClassifyModel:
 
         y_ = tf.placeholder(tf.float32, shape=[None, 1000])
         cross_entropy = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits=self.full_connection_layer23, labels=y_))
+            tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.full_connection_layer23, labels=y_))
         train_step = tf.train.AdamOptimizer(1e-7).minimize(cross_entropy)
         correct_prediction = tf.equal(tf.argmax(y_, 1), tf.argmax(self.full_connection_layer23, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
